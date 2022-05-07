@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreML
 import RealityKit
 import ARKit
 import Vision
@@ -230,6 +231,72 @@ struct ARViewContainer: UIViewRepresentable {
 //        }
     }
     
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator : NSObject, ARSessionDelegate{
+//        let documentDetectRequest = VNDetectDocumentSegmentationRequest()
+//        let document = documentDetectRequest.results?.first
+//
+//        if document != nil {
+//            documentDetected = true
+//            print("DEBUG: document detected")
+//            documentTexts += "There is a document!\n"
+//        }
+//
+//        var textDetectRequest : [VNRecognizedTextObservation] = []
+//
+//        let ocrDetection = VNRecognizeTextRequest{ request, error in
+//            textDetectRequest = request.results as! [VNRecognizedTextObservation]
+//        }
+//
+//        for currentTexts in textDetectRequest{
+//            let foundText = currentTexts.topCandidates(1)
+//            documentTexts += foundText.first!.string + " "
+//            print("DEBUG: current texts : \(foundText.first!.string)")
+//        }
+        var parent : ARViewContainer
+        
+        init(_ arViewContainer: ARViewContainer){
+            parent = arViewContainer
+            
+            super.init()
+            parent.arViewModel.arView.session.delegate = self
+        }
+        
+        func session(_ session: ARSession, didUpdate frame: ARFrame) {
+            
+            //Capture image from frame
+            let pixelBuffer = frame.capturedImage
+            let capturedImage = CIImage(cvPixelBuffer: pixelBuffer)
+            
+            //Detect document
+            let documentDetectRequest = VNDetectDocumentSegmentationRequest()
+            let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+            do{
+                try requestHandler.perform([documentDetectRequest])
+            }catch{}
+            
+            guard let document = documentDetectRequest.results?.first else { fatalError("DEBUG: no document found") }
+            guard let documentImage = perspectiveCorrectedImage(from: capturedImage, rectangleObservation: document)
+            else{ fatalError("")}
+            let documentRequestHandler = VNImageRequestHandler(ciImage: documentImage)
+            
+            //Recognize text on document
+            var textDetectRequest : [VNRecognizedTextObservation] = []
+            let ocrDetection = VNRecognizeTextRequest{request, error in
+                textDetectRequest = request.results as! [VNRecognizedTextObservation]
+            }
+            
+            //Perform text recognition on the document
+            do{
+                try documentRequestHandler.perform([ocrDetection])
+            }catch{}
+            
+            
+        }
+    }
 }
 
 #if DEBUG
@@ -239,3 +306,65 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
+
+public func createclassificationRequest() -> VNCoreMLRequest
+{
+    let classificationRequest: VNCoreMLRequest = {
+        // Load the ML model through its generated class and create a Vision request for it.
+        do {
+            let coreMLModel = try MLModel(contentsOf: #fileLiteral(resourceName: "CheckIdentifier.mlmodelc"))
+            let model = try VNCoreMLModel(for: coreMLModel)
+            
+            return VNCoreMLRequest(model: model)
+        } catch {
+            fatalError("can't load Vision ML model: \(error)")
+        }
+    }()
+    return classificationRequest
+}
+
+extension CGPoint {
+    func scaled(to size: CGSize) -> CGPoint {
+        return CGPoint(x: self.x * size.width, y: self.y * size.height)
+    }
+}
+extension CGRect {
+    func scaled(to size: CGSize) -> CGRect {
+        return CGRect(
+            x: self.origin.x * size.width,
+            y: self.origin.y * size.height,
+            width: self.size.width * size.width,
+            height: self.size.height * size.height
+        )
+    }
+}
+
+public func observationLinesUp(_ observation: VNRectangleObservation, with textObservation: VNRecognizedTextObservation ) -> Bool {
+    // calculate center
+    let midPoint =  CGPoint(x:textObservation.boundingBox.midX, y:observation.boundingBox.midY)
+    return textObservation.boundingBox.contains(midPoint)
+}
+
+public func perspectiveCorrectedImage(from inputImage: CIImage, rectangleObservation: VNRectangleObservation ) -> CIImage? {
+    let imageSize = inputImage.extent.size
+    
+    // Verify detected rectangle is valid.
+    let boundingBox = rectangleObservation.boundingBox.scaled(to: imageSize)
+    guard inputImage.extent.contains(boundingBox)
+    else { print("invalid detected rectangle"); return nil}
+    
+    // Rectify the detected image and reduce it to inverted grayscale for applying model.
+    let topLeft = rectangleObservation.topLeft.scaled(to: imageSize)
+    let topRight = rectangleObservation.topRight.scaled(to: imageSize)
+    let bottomLeft = rectangleObservation.bottomLeft.scaled(to: imageSize)
+    let bottomRight = rectangleObservation.bottomRight.scaled(to: imageSize)
+    let correctedImage = inputImage
+        .cropped(to: boundingBox)
+        .applyingFilter("CIPerspectiveCorrection", parameters: [
+            "inputTopLeft": CIVector(cgPoint: topLeft),
+            "inputTopRight": CIVector(cgPoint: topRight),
+            "inputBottomLeft": CIVector(cgPoint: bottomLeft),
+            "inputBottomRight": CIVector(cgPoint: bottomRight)
+        ])
+    return correctedImage
+}
