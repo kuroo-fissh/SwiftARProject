@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		307E6C9D283A06E30030D062 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 307E6C9C283A06E30030D062 /* toy_biplane.usdz */; };
+		307E6C9F283A077C0030D062 /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 307E6C9E283A077C0030D062 /* flower_tulip.usdz */; };
 		3095AE1D2824D3BE00B54974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095AE1C2824D3BE00B54974 /* AppDelegate.swift */; };
 		3095AE1F2824D3BE00B54974 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095AE1E2824D3BE00B54974 /* ContentView.swift */; };
 		3095AE232824D3C000B54974 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3095AE222824D3C000B54974 /* Assets.xcassets */; };
 		3095AE262824D3C000B54974 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3095AE252824D3C000B54974 /* Preview Assets.xcassets */; };
-		3095AE302824D3C000B54974 /* DocumentRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095AE2F2824D3C000B54974 /* DocumentRecognizerTests.swift */; };
-		3095AE3A2824D3C000B54974 /* DocumentRecognizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095AE392824D3C000B54974 /* DocumentRecognizerUITests.swift */; };
-		3095AE3C2824D3C000B54974 /* DocumentRecognizerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095AE3B2824D3C000B54974 /* DocumentRecognizerUITestsLaunchTests.swift */; };
-		3095AE4A2824D81300B54974 /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3095AE492824D81300B54974 /* flower_tulip.usdz */; };
+		30A82BE028388F64005160D5 /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A82BDF28388F64005160D5 /* ARViewModel.swift */; };
+		30A82BE228389291005160D5 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A82BE128389291005160D5 /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,17 +35,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		307E6C9C283A06E30030D062 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
+		307E6C9E283A077C0030D062 /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
 		3095AE192824D3BE00B54974 /* DocumentRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocumentRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3095AE1C2824D3BE00B54974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3095AE1E2824D3BE00B54974 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3095AE222824D3C000B54974 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3095AE252824D3C000B54974 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3095AE2B2824D3C000B54974 /* DocumentRecognizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DocumentRecognizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3095AE2F2824D3C000B54974 /* DocumentRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRecognizerTests.swift; sourceTree = "<group>"; };
 		3095AE352824D3C000B54974 /* DocumentRecognizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DocumentRecognizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3095AE392824D3C000B54974 /* DocumentRecognizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRecognizerUITests.swift; sourceTree = "<group>"; };
-		3095AE3B2824D3C000B54974 /* DocumentRecognizerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRecognizerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		3095AE492824D81300B54974 /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
+		30A82BDF28388F64005160D5 /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
+		30A82BE128389291005160D5 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				3095AE1B2824D3BE00B54974 /* DocumentRecognizer */,
-				3095AE2E2824D3C000B54974 /* DocumentRecognizerTests */,
-				3095AE382824D3C000B54974 /* DocumentRecognizerUITests */,
 				3095AE1A2824D3BE00B54974 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,7 +96,9 @@
 			children = (
 				3095AE482824D7CA00B54974 /* Models */,
 				3095AE1C2824D3BE00B54974 /* AppDelegate.swift */,
+				30A82BDF28388F64005160D5 /* ARViewModel.swift */,
 				3095AE1E2824D3BE00B54974 /* ContentView.swift */,
+				30A82BE128389291005160D5 /* ARViewContainer.swift */,
 				3095AE222824D3C000B54974 /* Assets.xcassets */,
 				3095AE242824D3C000B54974 /* Preview Content */,
 			);
@@ -113,27 +113,11 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		3095AE2E2824D3C000B54974 /* DocumentRecognizerTests */ = {
-			isa = PBXGroup;
-			children = (
-				3095AE2F2824D3C000B54974 /* DocumentRecognizerTests.swift */,
-			);
-			path = DocumentRecognizerTests;
-			sourceTree = "<group>";
-		};
-		3095AE382824D3C000B54974 /* DocumentRecognizerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3095AE392824D3C000B54974 /* DocumentRecognizerUITests.swift */,
-				3095AE3B2824D3C000B54974 /* DocumentRecognizerUITestsLaunchTests.swift */,
-			);
-			path = DocumentRecognizerUITests;
-			sourceTree = "<group>";
-		};
 		3095AE482824D7CA00B54974 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3095AE492824D81300B54974 /* flower_tulip.usdz */,
+				307E6C9E283A077C0030D062 /* flower_tulip.usdz */,
+				307E6C9C283A06E30030D062 /* toy_biplane.usdz */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,7 +226,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3095AE4A2824D81300B54974 /* flower_tulip.usdz in Resources */,
+				307E6C9D283A06E30030D062 /* toy_biplane.usdz in Resources */,
+				307E6C9F283A077C0030D062 /* flower_tulip.usdz in Resources */,
 				3095AE262824D3C000B54974 /* Preview Assets.xcassets in Resources */,
 				3095AE232824D3C000B54974 /* Assets.xcassets in Resources */,
 			);
@@ -269,6 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A82BE028388F64005160D5 /* ARViewModel.swift in Sources */,
+				30A82BE228389291005160D5 /* ARViewContainer.swift in Sources */,
 				3095AE1F2824D3BE00B54974 /* ContentView.swift in Sources */,
 				3095AE1D2824D3BE00B54974 /* AppDelegate.swift in Sources */,
 			);
@@ -278,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3095AE302824D3C000B54974 /* DocumentRecognizerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,8 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3095AE3A2824D3C000B54974 /* DocumentRecognizerUITests.swift in Sources */,
-				3095AE3C2824D3C000B54974 /* DocumentRecognizerUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
